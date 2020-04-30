@@ -11,17 +11,18 @@ public class Square
     private int[][] datarray;
     public Square(int order)
     {
-        
-        
+
     }
     public Square(String bits)
     {
+        int[][] datarray = new int[3][3];
+        //I know I'll have to move this down
         bits = bits.substring(2,bits.length());
         int counter = 0; 
         //should I be trying to count the dimension???
         int[] holder = new int[9];
         //maybe make this an arrayList so I can make it whatever length
-        for (int i = 0; i<bits.length()-2; i++)
+        for (int i = 0; i<bits.length()-3; i++)
         {
             if (bits.substring(i,i+1).equals(","))
             {
@@ -29,7 +30,11 @@ public class Square
             }
             else if (bits.substring(i,i+1).equals("{"))
             {
-                bits = bits.substring(i,bits.length());
+                bits = bits.substring(i+1,bits.length());
+            }
+            else if (bits.substring(i,i+1).equals(" "))
+            {
+                bits = bits.substring(i+1,bits.length());
             }
             else if (bits.substring(i,i+1).equals("}"))
             {
@@ -43,6 +48,7 @@ public class Square
             }
         }
         int count = 0;
+        dimension = 3;
         for (int r = 0; r<dimension; r++)
         {
             for (int c = 0; c<dimension; c++)
@@ -51,7 +57,9 @@ public class Square
                 count++;
             }
         }
+
     }
+
     public String toString()
     {
         for (int r = 0; r<dimension; r++)
@@ -65,5 +73,17 @@ public class Square
         return "x";
         //how to return with multiple lines? I know I can print, but 
         //I can't override toString with void instead of string
+    }
+
+    public void Printer()
+    {
+        for (int r = 0; r<dimension; r++)
+        {
+            for (int c = 0; c<dimension; c++)
+            {
+                System.out.print(datarray[r][c]+"   ");
+            }
+            System.out.println();
+        }
     }
 }
