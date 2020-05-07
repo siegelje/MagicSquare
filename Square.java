@@ -11,7 +11,23 @@ public class Square
     private int[][] datarray;
     public Square(int order)
     {
-
+        int[] holder = new int[order*order];
+        dimension = order;
+        for(int i = 0; i<order*order; i++)
+        {
+            holder[i]=i+1;
+        }
+        //shuffle here - can I reuse old shuffle method??
+        int[][] datarray = new int[order][order]; //works for any size!
+        int count = 0;
+        for (int r = 0; r<dimension; r++)
+        {
+            for (int c = 0; c<dimension; c++)
+            {
+                datarray[r][c] = holder[count];
+                count++;
+            }
+        }
     }
     public Square(String bits)
     {
@@ -62,28 +78,23 @@ public class Square
 
     public String toString()
     {
+        String all = " ";
         for (int r = 0; r<dimension; r++)
         {
             for (int c = 0; c<dimension; c++)
             {
-                System.out.print(datarray[r][c]+"   ");
+                all += datarray[r][c] + " ";
             }
-            System.out.println();
+            all += " /n";
         }
-        return "x";
-        //how to return with multiple lines? I know I can print, but 
-        //I can't override toString with void instead of string
+        return all;
+        //still buggy for some reason. Don't know why
     }
-
-    public void Printer()
+    
+    public boolean isMagic()
     {
-        for (int r = 0; r<dimension; r++)
-        {
-            for (int c = 0; c<dimension; c++)
-            {
-                System.out.print(datarray[r][c]+"   ");
-            }
-            System.out.println();
-        }
+        //similar to tictactoe check for win... 
+        //just a couple different circumstances
+        return false;
     }
 }
